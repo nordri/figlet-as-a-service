@@ -1,0 +1,19 @@
+nginx:
+    image: nginx
+    ports:
+        - "8090:80"
+    links:
+        - fpm
+    volumes:
+        - ./default.conf:/etc/nginx/conf.d/default.conf
+        - ./html:/usr/share/nginx/html
+fpm:
+    image: php-fpm-figlet
+    ports:
+        - "9000:9000"
+
+    # seems like fpm receives the full path from nginx
+    # and tries to find the files in this dock, so it must
+    # be the same as nginx.root
+    volumes:
+        - ./html:/usr/share/nginx/html

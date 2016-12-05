@@ -1,0 +1,5 @@
+FROM php:fpm
+MAINTAINER nordri@gmail.com
+
+RUN apt-get update && apt-get install -y figlet
+
